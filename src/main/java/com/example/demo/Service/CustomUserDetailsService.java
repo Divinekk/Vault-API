@@ -1,8 +1,6 @@
 package com.example.demo.Service;
 
-
 import com.example.demo.Entity.Users;
-import com.example.demo.Exception.DuplicateEmailException;
 import com.example.demo.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,8 +20,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     private UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Users> userOptional = userRepository.findByEmail(username);
+
         if (userOptional.isEmpty()) {
             throw new UsernameNotFoundException("User not found with email: " + username);
         }
@@ -31,11 +30,13 @@ public class CustomUserDetailsService implements UserDetailsService {
         Users user = userOptional.get();
 
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + user.getRole());
+
         return User.builder()
                 .username(user.getEmail())
                 .password(user.getPasswordHash())
                 .authorities(List.of(authority))
                 .build();
     }
+
 
 }
