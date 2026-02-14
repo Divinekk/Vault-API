@@ -1,21 +1,34 @@
 package com.example.demo.Entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import org.hibernate.annotations.CreationTimestamp;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "bank_accounts")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class BankAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String owner;
-    private int accountNumber;
-    private int balance;
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private Users owner;
+
+    @Column(unique = true, nullable = false, length = 10)
+    private String accountNumber;
+
+    @Column(nullable = false, precision = 15, scale = 2)
+    private BigDecimal balance;
+
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
 }
