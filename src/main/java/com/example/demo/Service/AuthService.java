@@ -5,6 +5,7 @@ import com.example.demo.DTO.LoginRequest;
 import com.example.demo.DTO.RegisterRequest;
 import com.example.demo.Entity.Users;
 import com.example.demo.Exception.DuplicateEmailException;
+import com.example.demo.Exception.InvalidCredentialsException;
 import com.example.demo.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,19 +15,21 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-
 public class AuthService {
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
     private JwtService jwtService;
+
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
-    public Users register(RegisterRequest request){
+    public Users register(RegisterRequest request) {
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new DuplicateEmailException("Email already registered: " + request.getEmail());
         }
@@ -40,13 +43,11 @@ public class AuthService {
         user.setLastname(request.getLastname());
         user.setRole("USER");
 
-        Users savedUser = userRepository.save(user);
-
-        return savedUser;
+        return userRepository.save(user);
     }
 
     public AuthResponse login(LoginRequest request) {
-        Optional <Users> userOptional = userRepository.findByEmail(request.getEmail());
+        Optional<Users> userOptional = userRepository.findByEmail(request.getEmail());
         if (userOptional.isEmpty()) {
             throw new InvalidCredentialsException("Invalid email or password");
         }
@@ -59,15 +60,9 @@ public class AuthService {
         if (!passwordEncoder.matches(request.getPasswordHash(), user.getPasswordHash())) {
             throw new InvalidCredentialsException("Invalid email or password");
         }
+
         String token = jwtService.generateToken(user.getEmail());
 
         return new AuthResponse(token, 900000L);
-
-
-
-
-
     }
-
-
 }
