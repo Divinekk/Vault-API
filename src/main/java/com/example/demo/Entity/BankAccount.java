@@ -1,5 +1,6 @@
 package com.example.demo.Entity;
 
+import com.example.demo.Util.BalanceEncryptor;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,9 +27,11 @@ public class BankAccount {
     @Column(unique = true, nullable = false, length = 10)
     private String accountNumber;
 
-    @Column(nullable = false, precision = 15, scale = 2)
-    private BigDecimal balance;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    @Convert(converter = BalanceEncryptor.class)
+    @Column(nullable = false, columnDefinition = "TEXT", precision = 15, scale = 2)
+    private BigDecimal balance;
 }
