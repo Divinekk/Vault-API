@@ -1,56 +1,166 @@
-# Secure-Banking-API-Prototype-
-Spring Boot banking API prototype demonstrating secure authentication, authorization, and data protection
-Project Overview
+# 🔐 SecureBank API
 
-This project is a secure banking backend API prototype built with Spring Boot and Java.
-It demonstrates how common security controls can be applied at the API layer to protect sensitive financial data and prevent common attacks on backend systems.
+A research-backed secure banking backend built with Spring Boot, focusing on authentication, BOLA prevention, and data encryption.
 
-The project focuses on authentication, authorization, and data protection, rather than building a full production banking system. It is intentionally scoped as a prototype to showcase secure backend design principles.
+---
 
-This project is inspired by and partially derived from the security concepts proposed in my undergraduate thesis on strengthening banking system security using modern cryptographic techniques.
+## 🎯 Overview
 
-Threat Model
+SecureBank API is a backend banking simulation designed to demonstrate modern API security practices including:
 
-The system assumes the following realistic threat scenarios:
-	•	Attackers may attempt to access other users’ bank accounts by manipulating request parameters (Broken Object Level Authorization).
-	•	Stolen or leaked credentials may be used to gain unauthorized access.
-	•	Sensitive financial data stored in the database may be exposed if the database is compromised.
-	•	Automated requests may be sent to abuse the API or exhaust system resources.
-	•	Poor password handling may allow attackers to reverse or reuse credentials.
+- BCrypt password hashing  
+- JWT-based stateless authentication  
+- BOLA (Broken Object Level Authorization) prevention  
+- AES-256 encryption for sensitive financial data  
+- Structured exception handling  
+- Integration and security testing  
 
-The API is designed with the assumption that the network is untrusted, and every request must be authenticated and authorized before accessing protected resources.
+This project bridges cybersecurity research and practical backend implementation.
 
-Implemented Security Features
+---
 
-The prototype implements the following core security controls:
-	•	JWT-based authentication for stateless session management.
-	•	Role-based access control to restrict sensitive endpoints.
-	•	Ownership checks to ensure users can only access their own accounts and transactions.
-	•	BCrypt password hashing to protect stored credentials.
-	•	AES encryption for sensitive data fields at rest.
-	•	Input validation and request filtering to reduce common injection risks.
-	•	Basic rate limiting to prevent abuse and brute-force attempts.
+## ✨ Key Features
 
-Out of Scope / Future Work
+- 🔑 Secure User Registration (BCrypt hashing, cost factor 12)  
+- 🔐 JWT Authentication (HS256, 24-hour expiration)  
+- 🛡️ BOLA Protection (users access only their own accounts)  
+- 💰 Bank Account Management  
+- 🔒 AES-256-GCM Encryption for balances at rest  
+- 📊 Clean API error responses via GlobalExceptionHandler  
+- 🧪 Unit & Integration Testing (40%+ coverage)  
 
-The following security mechanisms are discussed in the thesis but are not fully implemented in this prototype:
-	•	Full multi-factor authentication infrastructure (OTP delivery services).
-	•	RSA-based key exchange and certificate management.
-	•	Enterprise-grade monitoring, alerting, and SIEM integration.
-	•	Large-scale performance testing and compliance validation.
+---
 
-These features are documented conceptually and would be implemented in a production-grade system.
+## 🏗️ System Architecture
 
-Technology Stack
-	•	Java 17
-	•	Spring Boot
-	•	Spring Security
-	•	JWT
-	•	BCrypt
-	•	AES Encryption
-	•	MySQL / H2 Database
+```
+Controller → Service → Repository → Database
+JWT Filter → SecurityContext → Protected Endpoints
+JPA → Hibernate → MySQL
+```
 
-Disclaimer
+---
 
-This project is an educational prototype and is not intended for production use.
-Its goal is to demonstrate secure API design and implementation concepts, not to function as a complete banking solution
+## 🔧 Tech Stack
+
+- Java 17  
+- Spring Boot 3  
+- Spring Security  
+- Spring Data JPA  
+- MySQL  
+- JJWT (HS256)  
+- Lombok  
+- JUnit + Mockito  
+
+---
+
+## 🔐 Authentication & Security
+
+### Password Security
+
+- BCrypt hashing  
+- Salted + adaptive cost factor (12)  
+
+### Authentication
+
+- JWT (HS256 symmetric signing)  
+- 24-hour expiration  
+- Bearer token format  
+
+### Authorization
+
+- BOLA prevention implemented at service layer  
+- Ownership validation before data access  
+
+### Data Protection
+
+- AES-256-GCM encryption for account balances  
+- JPA AttributeConverter for transparent encryption/decryption  
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Java 17  
+- Maven  
+- MySQL 8+  
+
+### Setup
+
+```bash
+git clone https://github.com/yourusername/SecureBank-API.git
+cd SecureBank-API
+mvn clean install
+mvn spring-boot:run
+```
+
+---
+
+## 🔄 API Endpoints
+
+### Auth
+
+```
+POST /api/auth/register
+POST /api/auth/login
+```
+
+### Accounts
+
+```
+POST /api/accounts
+GET /api/accounts/{id}
+GET /api/accounts/my-accounts
+```
+
+---
+
+## 📊 Database Schema
+
+**Tables:**
+
+- users  
+- bank_accounts  
+
+**Relationships:**
+
+- One User → Many Bank Accounts  
+
+---
+
+## 🧪 Testing
+
+Run:
+
+```bash
+mvn test
+```
+
+Includes:
+
+- Registration tests  
+- JWT validation tests  
+- BOLA prevention tests  
+- Integration auth flow tests  
+
+---
+
+## 📈 Security Concepts Demonstrated
+
+- Broken Object Level Authorization (OWASP API1)  
+- Password Hashing Best Practices  
+- Stateless Authentication  
+- Encryption at Rest  
+- Secure Exception Handling  
+
+---
+
+## 📌 Limitations & Future Improvements
+
+- No refresh tokens  
+- No rate limiting  
+- No role-based authorization yet  
+- Key management not production-grade  
+- No monitoring/log aggregation  
