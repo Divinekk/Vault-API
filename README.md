@@ -1,4 +1,4 @@
-# 🔐 SecureBank API
+# 🔐 Vault API
 
 A research-backed secure banking backend built with Spring Boot, focusing on authentication, BOLA prevention, and data encryption.
 
