@@ -78,8 +78,8 @@ JPA → Hibernate → MySQL
 - JPA AttributeConverter for transparent encryption/decryption  
 
 ---
-
-![System Architecture](architecture.png)
+### Security Flow
+![System Architecture](IMG_1989.png)
 
 ## 🚀 Getting Started
 
