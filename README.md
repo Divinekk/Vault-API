@@ -6,7 +6,7 @@ A research-backed secure banking backend built with Spring Boot, focusing on aut
 
 ## 🎯 Overview
 
-SecureBank API is a backend banking simulation designed to demonstrate modern API security practices including:
+Vault API is a backend banking simulation designed to demonstrate modern API security practices including:
 
 - BCrypt password hashing  
 - JWT-based stateless authentication  
