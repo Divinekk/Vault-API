@@ -79,6 +79,8 @@ JPA → Hibernate → MySQL
 
 ---
 
+![System Architecture](architecture.png)
+
 ## 🚀 Getting Started
 
 ### Prerequisites
