@@ -92,7 +92,7 @@ JPA → Hibernate → MySQL
 ### Setup
 
 ```bash
-git clone https://github.com/yourusername/SecureBank-API.git
+git clone https://github.com/Divinekk/SecureBank-API.git
 cd SecureBank-API
 mvn clean install
 mvn spring-boot:run
