@@ -93,7 +93,7 @@ JPA → Hibernate → MySQL
 
 ```bash
 git clone https://github.com/Divinekk/Vault-API.git
-cd SecureBank-API
+cd Vault-API
 mvn clean install
 mvn spring-boot:run
 ```
