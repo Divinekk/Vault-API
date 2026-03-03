@@ -134,14 +134,14 @@ GET /api/accounts/my-accounts
 ## 📚 Research Background
 
 This project is informed by award-winning research on Nigerian 
-banking security. The research **"Cryptanalysis of Cryptographic Algorithms in Nigerian Banking Security"** was recognized as the **Best Presenter ** at TDK Conference 2025.
+banking security. The research **"Cryptanalysis of Cryptographic Algorithms in Nigerian Banking Security"** was recognized as the Best Presenter at TDK Conference 2025.
 
 **Research Highlights:**
 - Comparative analysis of JWT, AES, BCrypt, Argon2, TOTP
 - Security gap identification in Nigerian banking systems
 - Proposed solutions for fintech security challenges
 
-[Read Full Research Paper](./research/TDK_Banking_Security.pdf)
+[Read Full Research Paper]([./research/TDK_Banking_Security.pdf](https://docs.google.com/document/d/19nUqpopZgNaLGY6jrd_-yLi6XWfHIWKRXc87IBSkkSU/edit?usp=sharing))
 
 **Research-to-Implementation:**
 - **BCrypt (Cost Factor 12):** From research recommendation 
