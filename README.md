@@ -131,6 +131,25 @@ GET /api/accounts/my-accounts
 - One User → Many Bank Accounts  
 
 ---
+## 📚 Research Background
+
+This project is informed by award-winning research on Nigerian 
+banking security. The research **"Cryptanalysis of Cryptographic Algorithms in Nigerian Banking Security"** was recognized as the **Best Presenter ** at TDK Conference 2025.
+
+**Research Highlights:**
+- Comparative analysis of JWT, AES, BCrypt, Argon2, TOTP
+- Security gap identification in Nigerian banking systems
+- Proposed solutions for fintech security challenges
+
+[Read Full Research Paper](./research/TDK_Banking_Security.pdf)
+
+**Research-to-Implementation:**
+- **BCrypt (Cost Factor 12):** From research recommendation 
+  on password hashing security
+- **JWT + AES-GCM:** Based on comparative analysis of 
+  authentication + encryption layering
+- **BOLA Prevention:** Addressing OWASP API Security #1 risk 
+  identified in research
 
 ## 🧪 Testing
 
