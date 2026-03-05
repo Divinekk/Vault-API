@@ -135,10 +135,10 @@ erDiagram
     
     BANK_ACCOUNTS {
         bigint id PK
-        bigint user_id FK "NOT NULL"
-        varchar account_number UK "UNIQUE, 10 chars"
+        bigint owner FK "NOT NULL"
+        varchar accountNumber UK "UNIQUE, 10 chars"
         text balance "AES-256-GCM encrypted"
-        datetime created_at "NOT NULL, updatable=false"
+        datetime createdAt "NOT NULL, updatable=false"
     }
 ````
 
