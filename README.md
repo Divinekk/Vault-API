@@ -120,15 +120,43 @@ GET /api/accounts/my-accounts
 ---
 
 ## 📊 Database Schema
+```mermaid
+erDiagram
+    USERS ||--o{ BANK_ACCOUNTS : owns
+    
+    USERS {
+        bigint id PK
+        varchar email UK "NOT NULL, UNIQUE"
+        varchar password_hash "BCrypt hashed"
+        varchar full_name
+        varchar role "DEFAULT USER"
+        timestamp created_at
+    }
+    
+    BANK_ACCOUNTS {
+        bigint id PK
+        bigint owner_id FK
+        varchar account_number UK "NOT NULL, UNIQUE"
+        varbinary balance "AES-256-GCM encrypted"
+        timestamp created_at
+    }
+```
 
-**Tables:**
+### Key Design Decisions
 
-- users  
-- bank_accounts  
+**Security:**
+- Passwords stored as BCrypt hashes (cost factor 12)
+- Account balances encrypted using AES-256-GCM
+- Encrypted data stored as VARBINARY (not VARCHAR)
 
-**Relationships:**
+**Data Integrity:**
+- Foreign key constraint: `owner_id` references `users(id)`
+- CASCADE DELETE: Deleting user removes their accounts
+- Unique constraints on email and account_number
 
-- One User → Many Bank Accounts  
+**Performance:**
+- Index on `users.email` for fast authentication lookups
+- Index on `bank_accounts.owner_id` for account queries
 
 ---
 ## 🧪 Testing
