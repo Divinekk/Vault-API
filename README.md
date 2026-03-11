@@ -78,7 +78,7 @@ JPA → Hibernate → MySQL
 - JPA AttributeConverter for transparent encryption/decryption  
 
 ---
-### Security Flow
+### Security Architecture
 
 ```mermaid
 flowchart TD
@@ -112,13 +112,25 @@ flowchart TD
 
 - Java 17  
 - Maven  
-- MySQL 8+  
+- MySQL 8+ (or Docker for containerised setup)  
 
 ### Setup
 
 ```bash
 git clone https://github.com/Divinekk/Vault-API.git
 cd Vault-API
+```
+
+**Option A — Docker (recommended)**
+```bash
+# Spins up MySQL in a container via Docker Compose — no manual MySQL install needed
+docker compose up -d
+mvn spring-boot:run
+```
+
+**Option B — Manual MySQL**
+```bash
+# Create your MySQL database, configure credentials in application.yml, then:
 mvn clean install
 mvn spring-boot:run
 ```
