@@ -31,15 +31,7 @@ This project bridges cybersecurity research and practical backend implementation
 
 ---
 
-## 🏗️ System Architecture
 
-```
-Controller → Service → Repository → Database
-JWT Filter → SecurityContext → Protected Endpoints
-JPA → Hibernate → MySQL
-```
-
----
 
 ## 🔧 Tech Stack
 
