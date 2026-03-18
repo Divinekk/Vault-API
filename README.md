@@ -57,7 +57,9 @@ This project bridges cybersecurity research and practical backend implementation
 
 - JWT (HS256 symmetric signing)  
 - 24-hour expiration  
-- Bearer token format  
+- Bearer token format
+  
+Note: HS256 was chosen for practical library support. The underlying thesis research recommends EdDSA or RSA256 for production banking systems. Migration to RSA256 is planned as a future improvement.
 
 ### Authorization
 
@@ -68,7 +70,7 @@ This project bridges cybersecurity research and practical backend implementation
 
 - AES-256-GCM encryption for account balances  
 - JPA AttributeConverter for transparent encryption/decryption  
-Note: HS256 was chosen for practical library support. The underlying thesis research recommends EdDSA or RSA256 for production banking systems. Migration to RSA256 is planned as a future improvement.
+
 ---
 ### Security Architecture
 
